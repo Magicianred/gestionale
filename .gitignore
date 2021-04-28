@@ -1,0 +1,4 @@
+build/*
+workdir/*
+build/
+/target/
