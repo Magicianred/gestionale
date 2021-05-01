@@ -17,9 +17,6 @@ public class Fornitori implements Serializable {
 	@Id
 	private int id;
 
-	@Column(name="for_prodotti")
-	private int forProdotti;
-
 	private String nome;
 
 	@Column(name="p_iva")
@@ -40,14 +37,6 @@ public class Fornitori implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getForProdotti() {
-		return this.forProdotti;
-	}
-
-	public void setForProdotti(int forProdotti) {
-		this.forProdotti = forProdotti;
 	}
 
 	public String getNome() {

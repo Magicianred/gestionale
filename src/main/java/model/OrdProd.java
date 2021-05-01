@@ -14,6 +14,9 @@ import javax.persistence.*;
 public class OrdProd implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	private int ID_Ord_Prod;
+
 	private int quantita;
 
 	//bi-directional many-to-one association to Ordini
@@ -27,6 +30,14 @@ public class OrdProd implements Serializable {
 	private Prodotti prodotti;
 
 	public OrdProd() {
+	}
+
+	public int getID_Ord_Prod() {
+		return this.ID_Ord_Prod;
+	}
+
+	public void setID_Ord_Prod(int ID_Ord_Prod) {
+		this.ID_Ord_Prod = ID_Ord_Prod;
 	}
 
 	public int getQuantita() {

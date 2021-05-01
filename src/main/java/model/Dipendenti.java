@@ -18,13 +18,23 @@ public class Dipendenti implements Serializable {
 
 	private String cognome;
 
+	
+
 	private String nome;
+
+
 
 	private int numero;
 
+	
+
 	private String ruolo;
 
+	
+
 	private int stipendio;
+
+	
 
 	public Dipendenti() {
 	}
@@ -45,6 +55,10 @@ public class Dipendenti implements Serializable {
 		this.cognome = cognome;
 	}
 
+	
+
+	
+
 	public String getNome() {
 		return this.nome;
 	}
@@ -52,6 +66,8 @@ public class Dipendenti implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	
 
 	public int getNumero() {
 		return this.numero;
@@ -61,6 +77,8 @@ public class Dipendenti implements Serializable {
 		this.numero = numero;
 	}
 
+	
+
 	public String getRuolo() {
 		return this.ruolo;
 	}
@@ -69,6 +87,8 @@ public class Dipendenti implements Serializable {
 		this.ruolo = ruolo;
 	}
 
+	
+
 	public int getStipendio() {
 		return this.stipendio;
 	}
@@ -76,5 +96,7 @@ public class Dipendenti implements Serializable {
 	public void setStipendio(int stipendio) {
 		this.stipendio = stipendio;
 	}
+
+	
 
 }
