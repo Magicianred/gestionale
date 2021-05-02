@@ -20,17 +20,6 @@ public class Movimenti implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 
-	@Temporal(TemporalType.DATE)
-	private Date dataMovimento;
-
-	private int iban;
-
-	private int id;
-
-	private int idTipoMovimento;
-
-	private double importo;
-
 	private float prezzo;
 
 	private int quantita;
@@ -66,45 +55,6 @@ public class Movimenti implements Serializable {
 		this.data = data;
 	}
 
-	public Date getDataMovimento() {
-		return this.dataMovimento;
-	}
-
-	public void setDataMovimento(Date dataMovimento) {
-		this.dataMovimento = dataMovimento;
-	}
-
-	public int getIban() {
-		return this.iban;
-	}
-
-	public void setIban(int iban) {
-		this.iban = iban;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getIdTipoMovimento() {
-		return this.idTipoMovimento;
-	}
-
-	public void setIdTipoMovimento(int idTipoMovimento) {
-		this.idTipoMovimento = idTipoMovimento;
-	}
-
-	public double getImporto() {
-		return this.importo;
-	}
-
-	public void setImporto(double importo) {
-		this.importo = importo;
-	}
 
 	public float getPrezzo() {
 		return this.prezzo;
