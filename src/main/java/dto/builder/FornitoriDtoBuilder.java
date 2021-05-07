@@ -39,14 +39,14 @@ public class FornitoriDtoBuilder {
 		}return fd;
 	}
 	
-	public static List<Fornitori> ListaDtoToFornitori(List<FornitoriDTO> f){
-		List<Fornitori> fd = new ArrayList<Fornitori>();
-		List<Movimenti> mov = new ArrayList<Movimenti>();
-		for(FornitoriDTO ff : f) {
-			fd.add(new Fornitori(ff.getId(), ff.getNome(),ff.getpIva(),ff.getSede(), mov));
-		}
-		return fd;
-	}
+//	public static List<Fornitori> ListaDtoToFornitori(List<FornitoriDTO> f){
+//		List<Fornitori> fd = new ArrayList<Fornitori>();
+//		List<Movimenti> mov = new ArrayList<Movimenti>();
+//		for(FornitoriDTO ff : f) {
+//			fd.add(new Fornitori(ff.getId(), ff.getNome(),ff.getpIva(),ff.getSede(), mov));
+//		}
+//		return fd;
+//	}
 	
 	
 

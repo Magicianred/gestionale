@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import dto.FornitoriDTO;
 import model.Fornitori;
 
 @Repository

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import model.Fornitori;
 import service.FornitoriService;
+
 
 @RestController
 @RequestMapping("/fornitore")
@@ -34,6 +36,13 @@ public class FornitoriController 	 {
 		fs.insert(f);
 		return f;
 	}
+	
+//	@PostMapping("/insert")
+//	@Consumes("application/json")
+//	public FornitoriDTO insert(@RequestBody FornitoriDTO f) {
+//		fs.insert(FornitoriDtoBuilder.DtoToFornitori(f));
+//		return f;
+//	}
 	
 	@PutMapping("/update")
 	@Consumes("application/json")

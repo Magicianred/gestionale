@@ -44,14 +44,14 @@ public class ProdottiDtoBuilder {
 		return pd;
 	}
 	
-	public static List<Prodotti> ListaDtotoProdotti(List<ProdottiDTO> p){
-		List<Prodotti> pd = new ArrayList<Prodotti>();
-		List<Movimenti> mov = new ArrayList<Movimenti>();
-		List<OrdProd> op = new ArrayList<OrdProd>();
-		for(ProdottiDTO pp: p) {
-			pd.add(new Prodotti(pp.getId(),pp.getDescrizione(),pp.getGiacenza(),pp.getNome(), mov, op));
-		}
-		return pd;
-	}
+//	public static List<Prodotti> ListaDtotoProdotti(List<ProdottiDTO> p){
+//		List<Prodotti> pd = new ArrayList<Prodotti>();
+//		List<Movimenti> mov = new ArrayList<Movimenti>();
+//		List<OrdProd> op = new ArrayList<OrdProd>();
+//		for(ProdottiDTO pp: p) {
+//			pd.add(new Prodotti(pp.getId(),pp.getDescrizione(),pp.getGiacenza(),pp.getNome(), mov, op));
+//		}
+//		return pd;
+//	}
 
 }

@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+
+
 import java.util.Date;
 
 
@@ -10,11 +13,13 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Movimenti.findAll", query="SELECT m FROM Movimenti m")
-public class Movimenti implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table (name = "MOVIMENTI")
+public class Movimenti  {
+	
 
 	@Id
+	@GeneratedValue
+    @Column(name = "ID_mov")
 	private int ID_mov;
 
 	@Temporal(TemporalType.DATE)
@@ -25,20 +30,26 @@ public class Movimenti implements Serializable {
 	private int quantita;
 
 	private float totale;
-
-	//bi-directional many-to-one association to Fornitori
-	@ManyToOne
-	@JoinColumn(name="id_forn")
+	
+	private Prodotti prodotti; 
+	
 	private Fornitori fornitori;
-
-	//bi-directional many-to-one association to Prodotti
-	@ManyToOne
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@ElementCollection
 	@JoinColumn(name="id_prod")
-	private Prodotti prodotti;
-
-	public Movimenti() {
+	public Prodotti getProdotti() {
+		return prodotti;
+	}
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@ElementCollection
+	@JoinColumn(name="id_forn")
+	public Fornitori getFornitori() {
+		return fornitori;
 	}
 
+	
 	public int getID_mov() {
 		return this.ID_mov;
 	}
@@ -80,17 +91,11 @@ public class Movimenti implements Serializable {
 		this.totale = totale;
 	}
 
-	public Fornitori getFornitori() {
-		return this.fornitori;
-	}
 
-	public void setFornitori(Fornitori fornitori) {
+	public void setFornitori (Fornitori fornitori) {
 		this.fornitori = fornitori;
 	}
 
-	public Prodotti getProdotti() {
-		return this.prodotti;
-	}
 
 	public void setProdotti(Prodotti prodotti) {
 		this.prodotti = prodotti;

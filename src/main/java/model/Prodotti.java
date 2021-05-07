@@ -2,7 +2,12 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -10,11 +15,13 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Prodotti.findAll", query="SELECT p FROM Prodotti p")
-public class Prodotti implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "PRODOTTI")
+public class Prodotti {
+	
 
 	@Id
+	@GeneratedValue
+    @Column(name = "ID")
 	private int id;
 
 	private String descrizione;
@@ -22,17 +29,35 @@ public class Prodotti implements Serializable {
 	private int giacenza;
 
 	private String nome;
+	
+	private Set<Movimenti> movimentis = new HashSet<Movimenti>();
 
-	//bi-directional many-to-one association to Movimenti
-	@OneToMany(mappedBy="prodotti")
-	private List<Movimenti> movimentis;
+	
 
 	//bi-directional many-to-one association to OrdProd
-	@OneToMany(mappedBy="prodotti")
-	private List<OrdProd> ordProds;
+	
+	
+//	@OneToMany(mappedBy="prodotti")
+//	@JsonManagedReference
+//	private List<OrdProd> ordProds;
+	
+	@OneToMany (mappedBy = "prodotti")
+	@ElementCollection
+	public Set<Movimenti> getMovimentis(){
+		return movimentis;
+	}
 
 	public Prodotti() {
 	}
+	
+	
+	public Prodotti(int id, String descrizione, int giacenza, String nome) {
+		this.id = id;
+		this.descrizione = descrizione;
+		this.giacenza = giacenza;
+		this.nome = nome;
+	}
+
 
 	public int getId() {
 		return this.id;
@@ -66,48 +91,17 @@ public class Prodotti implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Movimenti> getMovimentis() {
-		return this.movimentis;
+	
+	
+
+
+	public void setMovimentis(Set<Movimenti> prodotti) {
+		this.movimentis = prodotti;
 	}
-
-	public void setMovimentis(List<Movimenti> movimentis) {
-		this.movimentis = movimentis;
+	
+	public void addMovimenti(Movimenti movimenti) {
+		this.movimentis.add(movimenti);
 	}
-
-	public Movimenti addMovimenti(Movimenti movimenti) {
-		getMovimentis().add(movimenti);
-		movimenti.setProdotti(this);
-
-		return movimenti;
-	}
-
-	public Movimenti removeMovimenti(Movimenti movimenti) {
-		getMovimentis().remove(movimenti);
-		movimenti.setProdotti(null);
-
-		return movimenti;
-	}
-
-	public List<OrdProd> getOrdProds() {
-		return this.ordProds;
-	}
-
-	public void setOrdProds(List<OrdProd> ordProds) {
-		this.ordProds = ordProds;
-	}
-
-	public OrdProd addOrdProd(OrdProd ordProd) {
-		getOrdProds().add(ordProd);
-		ordProd.setProdotti(this);
-
-		return ordProd;
-	}
-
-	public OrdProd removeOrdProd(OrdProd ordProd) {
-		getOrdProds().remove(ordProd);
-		ordProd.setProdotti(null);
-
-		return ordProd;
-	}
+	
 
 }

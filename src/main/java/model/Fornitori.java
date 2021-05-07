@@ -2,7 +2,13 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -10,11 +16,13 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Fornitori.findAll", query="SELECT f FROM Fornitori f")
-public class Fornitori implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "FORNITORI")
+public class Fornitori  {
+	
 
 	@Id
+	@GeneratedValue
+    @Column(name = "ID")
 	private int id;
 
 	private String nome;
@@ -23,13 +31,33 @@ public class Fornitori implements Serializable {
 	private String pIva;
 
 	private String sede;
+	
+	private Set<Movimenti> movimentis = new HashSet<Movimenti>();
 
-	//bi-directional many-to-one association to Movimenti
-	@OneToMany(mappedBy="fornitori")
-	private List<Movimenti> movimentis;
+	@OneToMany(mappedBy = "fornitori")
+	@ElementCollection
+	public Set<Movimenti> getMovimentis(){
+		return movimentis;
+	}
+	
 
 	public Fornitori() {
 	}
+	
+	
+
+	public Fornitori(int id, String nome, String pIva, String sede) {
+		this.id = id;
+		this.nome = nome;
+		this.pIva = pIva;
+		this.sede = sede;
+	}
+	
+	public void addProdotti(Movimenti prodotti) {
+		this.movimentis.add(prodotti);
+	}
+
+
 
 	public int getId() {
 		return this.id;
@@ -63,26 +91,15 @@ public class Fornitori implements Serializable {
 		this.sede = sede;
 	}
 
-	public List<Movimenti> getMovimentis() {
-		return this.movimentis;
-	}
 
-	public void setMovimentis(List<Movimenti> movimentis) {
+	public void setMovimentis(Set<Movimenti> movimentis) {
 		this.movimentis = movimentis;
 	}
-
-	public Movimenti addMovimenti(Movimenti movimenti) {
-		getMovimentis().add(movimenti);
-		movimenti.setFornitori(this);
-
-		return movimenti;
+	
+	public void addMovimenti(Movimenti movimenti) {
+		this.movimentis.add(movimenti);
 	}
 
-	public Movimenti removeMovimenti(Movimenti movimenti) {
-		getMovimentis().remove(movimenti);
-		movimenti.setFornitori(null);
-
-		return movimenti;
-	}
+	
 
 }
