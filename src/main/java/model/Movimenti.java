@@ -1,26 +1,39 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-
-
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * The persistent class for the movimenti database table.
  * 
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table (name = "MOVIMENTI")
-public class Movimenti  {
-	
+@Table(name = "movimenti")
+@NamedQuery(name = "Movimenti.findAll", query = "SELECT m FROM Movimenti m")
+public class Movimenti implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
-    @Column(name = "ID_mov")
-	private int ID_mov;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_mov")
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	private Date data;
@@ -30,32 +43,26 @@ public class Movimenti  {
 	private int quantita;
 
 	private float totale;
-	
-	private Prodotti prodotti; 
-	
+
+	// bi-directional many-to-one association to Fornitori
+	@ManyToOne
+	@JoinColumn(name = "id_forn")
 	private Fornitori fornitori;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@ElementCollection
-	@JoinColumn(name="id_prod")
-	public Prodotti getProdotti() {
-		return prodotti;
-	}
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@ElementCollection
-	@JoinColumn(name="id_forn")
-	public Fornitori getFornitori() {
-		return fornitori;
+
+	// bi-directional many-to-one association to Prodotti
+	@ManyToOne
+	@JoinColumn(name = "id_prod")
+	private Prodotti prodotti;
+
+	public Movimenti() {
 	}
 
-	
-	public int getID_mov() {
-		return this.ID_mov;
+	public int getId() {
+		return id;
 	}
 
-	public void setID_mov(int ID_mov) {
-		this.ID_mov = ID_mov;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getData() {
@@ -65,7 +72,6 @@ public class Movimenti  {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
 
 	public float getPrezzo() {
 		return this.prezzo;
@@ -91,11 +97,17 @@ public class Movimenti  {
 		this.totale = totale;
 	}
 
+	public Fornitori getFornitori() {
+		return this.fornitori;
+	}
 
-	public void setFornitori (Fornitori fornitori) {
+	public void setFornitori(Fornitori fornitori) {
 		this.fornitori = fornitori;
 	}
 
+	public Prodotti getProdotti() {
+		return this.prodotti;
+	}
 
 	public void setProdotti(Prodotti prodotti) {
 		this.prodotti = prodotti;
