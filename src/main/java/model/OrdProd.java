@@ -10,9 +10,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * The persistent class for the ord_prod database table.
  * 
  */
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+
 @Entity
 @Table(name = "ord_prod")
 @NamedQuery(name = "OrdProd.findAll", query = "SELECT o FROM OrdProd o")
@@ -21,7 +19,8 @@ public class OrdProd implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID_Ord_Prod;
+	@Column(name = "ID_Ord_Prod")
+	private int id;
 
 	private int quantita;
 
@@ -39,11 +38,11 @@ public class OrdProd implements Serializable {
 	}
 
 	public int getID_Ord_Prod() {
-		return this.ID_Ord_Prod;
+		return this.id;
 	}
 
 	public void setID_Ord_Prod(int ID_Ord_Prod) {
-		this.ID_Ord_Prod = ID_Ord_Prod;
+		this.id = ID_Ord_Prod;
 	}
 
 	public int getQuantita() {
@@ -66,7 +65,7 @@ public class OrdProd implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID_Ord_Prod;
+		result = prime * result +id;
 		result = prime * result + ((ordini == null) ? 0 : ordini.hashCode());
 		result = prime * result + ((prodotti == null) ? 0 : prodotti.hashCode());
 		result = prime * result + quantita;
@@ -82,7 +81,7 @@ public class OrdProd implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		OrdProd other = (OrdProd) obj;
-		if (ID_Ord_Prod != other.ID_Ord_Prod)
+		if (id != other.id)
 			return false;
 		if (ordini == null) {
 			if (other.ordini != null)
