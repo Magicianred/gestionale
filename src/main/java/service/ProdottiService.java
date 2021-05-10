@@ -42,5 +42,13 @@ public class ProdottiService {
 	public Prodotti findById(int id) {
 		return pr.findById(id);
 	}
+	
+	public List<Prodotti> FindGiacDecre(){
+		return pr.FindGiacDecre();
+	}
+	
+	public List<Prodotti> FindGiacCres(){
+		return pr.FindGiacCres();
+	}
 
 }

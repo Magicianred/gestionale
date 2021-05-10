@@ -46,4 +46,20 @@ public class ProdottiRepository {
 	public Prodotti findById(int id) {
 		return em.find(Prodotti.class, id);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Prodotti> FindGiacDecre (){
+		Query q = em.createQuery ("SELECT p FROM Prodotti p ORDER BY p.giacenza DESC" );
+		List<Prodotti> res = q.getResultList();
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Prodotti> FindGiacCres (){
+		Query q = em.createQuery ("SELECT p FROM Prodotti p ORDER BY p.giacenza ASC" );
+		List<Prodotti> res = q.getResultList();
+		return res;
+	}
+	
+	
 }

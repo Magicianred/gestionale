@@ -59,4 +59,16 @@ public class ProdottiController {
 	public Prodotti findById(@RequestParam (value = "id", required  =true ) int id) {
 		return ps.findById(id);
 	}
+	
+	@GetMapping("/FindGiacDecre")
+	@Produces("application/json")
+	public List<Prodotti> FindGiacDecre(){
+		return ps.FindGiacDecre();
+	}
+	
+	@GetMapping("/FindGiacCres")
+	@Produces("application/json")
+	public List<Prodotti> FindGiacCres(){
+		return ps.FindGiacCres();
+	}
 }
