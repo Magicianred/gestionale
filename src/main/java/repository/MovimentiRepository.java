@@ -32,7 +32,7 @@ public class MovimentiRepository {
 	}
 	
 	public void remove(Movimenti m)throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		Movimenti mm = em.find(Movimenti.class, m.getId());
+		Movimenti mm = em.find(Movimenti.class, m.getID_mov());
 		em.remove(mm);
 	}
 	

@@ -8,7 +8,7 @@ public class MovimentiDtoBuilder {
 	public static MovimentiDTO MovimentiToDTO(Movimenti m) {
 		MovimentiDTO myMovimenti = new MovimentiDTO(); 
 		
-		myMovimenti.setID_mov(m.getId());
+		myMovimenti.setID_mov(m.getID_mov());
 		myMovimenti.setData(m.getData());
 		myMovimenti.setPrezzo(m.getPrezzo());
 		myMovimenti.setQuantita(m.getQuantita());
@@ -21,7 +21,7 @@ public class MovimentiDtoBuilder {
 	
 	public static Movimenti DtoToMovimenti(MovimentiDTO m) {
 		Movimenti myMovimenti = new Movimenti();
-		myMovimenti.setId(m.getID_mov());
+		myMovimenti.setID_mov(m.getID_mov());
 		myMovimenti.setData(m.getData());
 		myMovimenti.setPrezzo(m.getPrezzo());
 		myMovimenti.setQuantita(m.getQuantita());

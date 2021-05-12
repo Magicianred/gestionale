@@ -1,38 +1,23 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.util.List;
+
 
 /**
  * The persistent class for the prodotti database table.
  * 
  */
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
 @Entity
-@Table(name = "prodotti")
-@NamedQuery(name = "Prodotti.findAll", query = "SELECT p FROM Prodotti p")
+@NamedQuery(name="Prodotti.findAll", query="SELECT p FROM Prodotti p")
 public class Prodotti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private int id;
 
 	private String descrizione;
@@ -41,79 +26,18 @@ public class Prodotti implements Serializable {
 
 	private String nome;
 
-	// bi-directional many-to-one association to Movimenti
-	@OneToMany(mappedBy = "prodotti")
+	//bi-directional many-to-one association to Movimenti
+	@OneToMany(mappedBy="prodotti")
 	@JsonIgnore
-	private Set<Movimenti> movimentis;
+	private List<Movimenti> movimentis;
 
-	// bi-directional many-to-one association to OrdProd
-	@OneToMany(mappedBy = "prodotti")
+	//bi-directional many-to-one association to OrdProd
+	@OneToMany(mappedBy="prodotti")
 	@JsonIgnore
-	private Set<OrdProd> ordProds;
+	private List<OrdProd> ordProds;
 
 	public Prodotti() {
 	}
-
-	
-	
-	
-	
-
-
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
-		result = prime * result + giacenza;
-		result = prime * result + id;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
-	}
-
-
-
-
-
-
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Prodotti other = (Prodotti) obj;
-		if (descrizione == null) {
-			if (other.descrizione != null)
-				return false;
-		} else if (!descrizione.equals(other.descrizione))
-			return false;
-		if (giacenza != other.giacenza)
-			return false;
-		if (id != other.id)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
-	}
-
-
-
-
-
-
-
-
 
 	public int getId() {
 		return this.id;
@@ -147,11 +71,11 @@ public class Prodotti implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Movimenti> getMovimentis() {
+	public List<Movimenti> getMovimentis() {
 		return this.movimentis;
 	}
 
-	public void setMovimentis(Set<Movimenti> movimentis) {
+	public void setMovimentis(List<Movimenti> movimentis) {
 		this.movimentis = movimentis;
 	}
 
@@ -169,11 +93,11 @@ public class Prodotti implements Serializable {
 		return movimenti;
 	}
 
-	public Set<OrdProd> getOrdProds() {
+	public List<OrdProd> getOrdProds() {
 		return this.ordProds;
 	}
 
-	public void setOrdProds(Set<OrdProd> ordProds) {
+	public void setOrdProds(List<OrdProd> ordProds) {
 		this.ordProds = ordProds;
 	}
 
