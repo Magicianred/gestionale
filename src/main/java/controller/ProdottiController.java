@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.Fornitori;
 import model.Prodotti;
 import service.ProdottiService;
 
@@ -70,5 +71,11 @@ public class ProdottiController {
 	@Produces("application/json")
 	public List<Prodotti> FindGiacCres(){
 		return ps.FindGiacCres();
+	}
+	
+	@GetMapping("/findByNome")
+	@Produces("application/json")
+	public List<Prodotti> findByNome (@RequestParam(value = "nome", required = true) String nome) {
+		return ps.findByNome(nome);
 	}
 }

@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import model.Fornitori;
 import model.Prodotti;
 
 @Repository
@@ -61,5 +62,14 @@ public class ProdottiRepository {
 		return res;
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Prodotti> findByNome(String nome) {
+		Query q = em.createQuery(
+				"SELECT p FROM Prodotti p WHERE nome LIKE :nome");
+		q.setParameter("nome", "%"+nome+"%");
+		List<Prodotti> res = q.getResultList();
+		return res;
+	}
 	
 }
