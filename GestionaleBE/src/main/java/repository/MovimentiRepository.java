@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import model.Fornitori;
 import model.Movimenti;
 
 @Repository
@@ -45,5 +46,9 @@ public class MovimentiRepository {
 	
 	public Movimenti findById(int Id) {
 		return em.find(Movimenti.class, Id);
+	}
+	
+	public Movimenti findByIdProd(int id_prod) {
+		return em.find(Movimenti.class, id_prod);
 	}
 }

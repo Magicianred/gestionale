@@ -60,5 +60,13 @@ public class MovimentiController {
 	public Movimenti findById(@RequestParam (value = "ID_mov", required = true) int ID_mov) {
 		return ms.findById(ID_mov);
 	}
+	
+	@GetMapping("/findByIdProd")
+	@Produces("application/json")
+	public Movimenti findByIdProd(@RequestParam (value = "id_prod", required = true) int id_prod) {
+		return ms.findByIdProd(id_prod);
+	}
+	
+	
 
 }

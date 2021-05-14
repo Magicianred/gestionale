@@ -1,4 +1,4 @@
-build/*
-workdir/*
-build/
-/target/
+GestionaleBE/build/*
+GestionaleBEworkdir/*
+GestionaleBE/build/
+GestionaleBE/target/
