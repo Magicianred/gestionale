@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import dto.FornitoriDTO;
 import model.Fornitori;
+import model.Prodotti;
 
 @Repository
 public class FornitoriRepository {
@@ -49,6 +50,35 @@ public class FornitoriRepository {
 	public Fornitori findById(int id) {
 		return em.find(Fornitori.class, id);
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Fornitori> findByNome(String nome) {
+		Query q = em.createQuery(
+				"SELECT f FROM Fornitori f WHERE nome LIKE :nome");
+		q.setParameter("nome", "%"+nome+"%");
+		List<Fornitori> res = q.getResultList();
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Fornitori> findByPiva(String pIva){
+		Query q = em.createQuery(
+				"SELECT f FROM Fornitori f WHERE p_iva LIKE :pIva");
+		q.setParameter("pIva", "%"+pIva+"%");
+		List<Fornitori> res = q.getResultList();
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Fornitori> findBySede(String sede){
+		Query q = em.createQuery(
+				"SELECT f FROM Fornitori f WHERE sede LIKE :sede");
+		q.setParameter("sede", "%"+sede+"%");
+		List<Fornitori> res = q.getResultList();
+		return res;
+	}
+	
 	
 
 }

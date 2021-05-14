@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import model.Fornitori;
+import model.Prodotti;
 import service.FornitoriService;
 
 
@@ -67,6 +68,24 @@ public class FornitoriController 	 {
 	@Produces("application/json")
 	public Fornitori findByID(@RequestParam(value ="id", required = true) int id) {
 		return fs.findById(id);
+	}
+	
+	@GetMapping("/findByNome")
+	@Produces("application/json")
+	public List<Fornitori> findByNome (@RequestParam(value = "nome", required = true) String nome) {
+		return fs.findByNome(nome);
+	}
+	
+	@GetMapping("/findByPiva")
+	@Produces("application/json")
+	public List<Fornitori> findByPiva (@RequestParam(value = "pIva", required = true) String pIva) {
+		return fs.findByPiva(pIva);
+	}
+	
+	@GetMapping("/findBySede")
+	@Produces("application/json")
+	public List<Fornitori> findBySede (@RequestParam(value = "sede", required = true) String sede) {
+		return fs.findBySede(sede);
 	}
 
 }

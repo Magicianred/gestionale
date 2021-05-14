@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import dto.FornitoriDTO;
 import model.Fornitori;
+import model.Prodotti;
 import repository.FornitoriRepository;
 
 @Service
@@ -56,6 +57,18 @@ public class FornitoriService {
 	
 	public Fornitori findById(int id) {
 		return fr.findById(id);
+	}
+	
+	public List<Fornitori> findByNome(String nome){
+		return fr.findByNome(nome);
+	}
+	
+	public List<Fornitori> findByPiva (String pIva){
+		return fr.findByPiva(pIva);
+	}
+	
+	public List<Fornitori> findBySede (String sede){
+		return fr.findBySede(sede);
 	}
 
 }
