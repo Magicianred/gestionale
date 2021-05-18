@@ -3,19 +3,32 @@ import React, { Component } from 'react'
 
 const Prodotti = ({ prodotti }) => {
     return (
-        <div>
-        <center><h1>Prodotti List</h1></center>
-        {prodotti.map((prodotto) => (
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{prodotto.id}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{prodotto.nome}</h6>
-                <p class="card-text">{prodotto.descrizione}</p>
-                <p class="card-text">{prodotto.giacenza}</p>
-            </div>
-            </div>
-        ))}
+        <div id='corpo'>
+            <h1>Prodotti</h1>
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Giacenza</th>
+                    </tr>
+                </thead>
+                {prodotti.map((prodotto) => (
+                <tbody>
+                    <tr>
+                        <th scope="row">{prodotto.id}</th>
+                        <td>{prodotto.nome}</td>
+                        <td>{prodotto.descrizione}</td>
+                        <td>{prodotto.giacenza}</td>
+                    </tr>
+                </tbody>
+                ))}
+            </table>
         </div>
+
+        
     )
     };
 export default Prodotti;

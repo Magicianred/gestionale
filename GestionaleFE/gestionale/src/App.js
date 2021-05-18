@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Prodotti from '../src/Components/ProdottiComponent'
 import DataContextProvider from './Context/DataContext';
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 
 class App extends Component {
@@ -28,11 +29,13 @@ class App extends Component {
   render() {
     return (
       <>
-      <Prodotti prodotti={this.state.prodotti} />
-      <DataContextProvider>
+     
+      <DataContextProvider/>
       <Header/>
-      </DataContextProvider>
+      <Prodotti prodotti={this.state.prodotti} />
+      <Footer/>
       </>
+      
     );
   }
 }

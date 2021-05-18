@@ -15,7 +15,7 @@ const DataContextProvider = (props) => {
         const res = await fetch(api)
         const data = await res.json()
         .then (data => setDatiJson(data) )
-        .catch(error => alert(error='error loading the API'))
+        .catch(error => alert(error='error loading the API, Controlla se hai fatto partire server backend'))
         setIsLoading(false)
       }
       getDati()
