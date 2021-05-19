@@ -18,19 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.Movimenti;
-import service.MovimentiService;
+import model.Movdetail;
+import service.MovdetailService;
 
 @RestController
-@RequestMapping("/movimenti")
-public class MovimentiController {
+@RequestMapping("/movdetail")
+public class MovdetailController {
 	
 	@Autowired
-	private MovimentiService ms;
+	private MovdetailService ms;
 	
 	@PostMapping("/insert")
 	@Consumes("application/json")
-	public Movimenti insert(@RequestBody Movimenti m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+	public Movdetail insert(@RequestBody Movdetail m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
 		ms.insert(m);
 		return m;
 	}
@@ -38,35 +38,33 @@ public class MovimentiController {
 	@PutMapping("/update")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public boolean update(@RequestBody Movimenti m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+	public boolean update(@RequestBody Movdetail m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
 		return ms.update(m);
 	}
 	
 	@DeleteMapping("/delete")
 	@Produces("application/json")
-	public void remove(@RequestBody Movimenti m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+	public void remove(@RequestBody Movdetail m) throws ClassNotFoundException, SQLException, NamingException, ParseException {
 		ms.remove(m);
 	}
 	
 	@GetMapping("/findAll")
 	@Produces("application/json")
-	public List<Movimenti> findAll(){
+	public List<Movdetail> findAll(){
 		return ms.findAll();
 	}
 	
 	
 	@GetMapping("/findByID")
 	@Produces("application/json")
-	public Movimenti findById(@RequestParam (value = "ID_mov", required = true) int ID_mov) {
-		return ms.findById(ID_mov);
+	public Movdetail findById(@RequestParam (value = "id", required = true) int id) {
+		return ms.findById(id);
 	}
 	
 	@GetMapping("/findByIdProd")
 	@Produces("application/json")
-	public Movimenti findByIdProd(@RequestParam (value = "id_forn", required = true) int id_forn) {
-		return ms.findByIdForn(id_forn);
+	public Movdetail findByIdProd(@RequestParam (value = "id_prod", required = true) int id_prod) {
+		return ms.findByIdProd(id_prod);
 	}
-	
-	
 
 }

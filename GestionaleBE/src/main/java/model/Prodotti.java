@@ -26,14 +26,14 @@ public class Prodotti implements Serializable {
 
 	private String nome;
 
-	//bi-directional many-to-one association to Movimenti
-	@OneToMany(mappedBy="prodotti")
+	//bi-directional many-to-one association to Movdetail
 	@JsonIgnore
-	private List<Movimenti> movimentis;
+	@OneToMany(mappedBy="prodotti")
+	private List<Movdetail> movdetails;
 
 	//bi-directional many-to-one association to OrdProd
-	@OneToMany(mappedBy="prodotti")
 	@JsonIgnore
+	@OneToMany(mappedBy="prodotti")
 	private List<OrdProd> ordProds;
 
 	public Prodotti() {
@@ -71,26 +71,26 @@ public class Prodotti implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Movimenti> getMovimentis() {
-		return this.movimentis;
+	public List<Movdetail> getMovdetails() {
+		return this.movdetails;
 	}
 
-	public void setMovimentis(List<Movimenti> movimentis) {
-		this.movimentis = movimentis;
+	public void setMovdetails(List<Movdetail> movdetails) {
+		this.movdetails = movdetails;
 	}
 
-	public Movimenti addMovimenti(Movimenti movimenti) {
-		getMovimentis().add(movimenti);
-		movimenti.setProdotti(this);
+	public Movdetail addMovdetail(Movdetail movdetail) {
+		getMovdetails().add(movdetail);
+		movdetail.setProdotti(this);
 
-		return movimenti;
+		return movdetail;
 	}
 
-	public Movimenti removeMovimenti(Movimenti movimenti) {
-		getMovimentis().remove(movimenti);
-		movimenti.setProdotti(null);
+	public Movdetail removeMovdetail(Movdetail movdetail) {
+		getMovdetails().remove(movdetail);
+		movdetail.setProdotti(null);
 
-		return movimenti;
+		return movdetail;
 	}
 
 	public List<OrdProd> getOrdProds() {

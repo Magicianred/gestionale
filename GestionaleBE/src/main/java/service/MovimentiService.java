@@ -42,8 +42,8 @@ public class MovimentiService {
 		return mr.findById(ID_mov);
 	}
 	
-	public Movimenti findByIdProd(int id_prod) {
-		return mr.findByIdProd(id_prod);
+	public Movimenti findByIdForn(int id_forn) {
+		return mr.findByIdForn(id_forn);
 	}
 	
 	

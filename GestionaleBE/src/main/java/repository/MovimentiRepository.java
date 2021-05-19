@@ -33,7 +33,7 @@ public class MovimentiRepository {
 	}
 	
 	public void remove(Movimenti m)throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		Movimenti mm = em.find(Movimenti.class, m.getID_mov());
+		Movimenti mm = em.find(Movimenti.class, m.getId());
 		em.remove(mm);
 	}
 	
@@ -48,7 +48,7 @@ public class MovimentiRepository {
 		return em.find(Movimenti.class, Id);
 	}
 	
-	public Movimenti findByIdProd(int id_prod) {
-		return em.find(Movimenti.class, id_prod);
+	public Movimenti findByIdForn(int id_forn) {
+		return em.find(Movimenti.class, id_forn);
 	}
 }

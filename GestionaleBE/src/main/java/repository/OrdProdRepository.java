@@ -32,7 +32,7 @@ public class OrdProdRepository {
 	}
 	
 	public void delete(OrdProd o)throws ClassNotFoundException, SQLException, NamingException, ParseException  {
-		OrdProd op = em.find(OrdProd.class, o.getID_Ord_Prod());
+		OrdProd op = em.find(OrdProd.class, o.getId());
 		em.remove(op);
 	}
 	

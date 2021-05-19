@@ -2,7 +2,11 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -15,37 +19,30 @@ public class Movimenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int ID_mov;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	private Date data;
 
-
-	private float prezzo;
-
-	private int quantita;
-
-	private float totale;
+	//bi-directional many-to-one association to Movdetail
+	@JsonIgnore
+	@OneToMany(mappedBy="movimenti")
+	private List<Movdetail> movdetails;
 
 	//bi-directional many-to-one association to Fornitori
 	@ManyToOne
 	@JoinColumn(name="id_forn")
 	private Fornitori fornitori;
 
-	//bi-directional many-to-one association to Prodotti
-	@ManyToOne
-	@JoinColumn(name="id_prod")
-	private Prodotti prodotti;
-
 	public Movimenti() {
 	}
 
-	public int getID_mov() {
-		return this.ID_mov;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setID_mov(int ID_mov) {
-		this.ID_mov = ID_mov;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getData() {
@@ -56,29 +53,28 @@ public class Movimenti implements Serializable {
 		this.data = data;
 	}
 
+	
 
-	public float getPrezzo() {
-		return this.prezzo;
+	public List<Movdetail> getMovdetails() {
+		return this.movdetails;
 	}
 
-	public void setPrezzo(float prezzo) {
-		this.prezzo = prezzo;
+	public void setMovdetails(List<Movdetail> movdetails) {
+		this.movdetails = movdetails;
 	}
 
-	public int getQuantita() {
-		return this.quantita;
+	public Movdetail addMovdetail(Movdetail movdetail) {
+		getMovdetails().add(movdetail);
+		movdetail.setMovimenti(this);
+
+		return movdetail;
 	}
 
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
+	public Movdetail removeMovdetail(Movdetail movdetail) {
+		getMovdetails().remove(movdetail);
+		movdetail.setMovimenti(null);
 
-	public float getTotale() {
-		return this.totale;
-	}
-
-	public void setTotale(float totale) {
-		this.totale = totale;
+		return movdetail;
 	}
 
 	public Fornitori getFornitori() {
@@ -87,14 +83,6 @@ public class Movimenti implements Serializable {
 
 	public void setFornitori(Fornitori fornitori) {
 		this.fornitori = fornitori;
-	}
-
-	public Prodotti getProdotti() {
-		return this.prodotti;
-	}
-
-	public void setProdotti(Prodotti prodotti) {
-		this.prodotti = prodotti;
 	}
 
 }

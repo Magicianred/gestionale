@@ -14,37 +14,30 @@ public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int ID_dip;
+	private int id;
 
 	private String cognome;
 
-	
-
 	private String nome;
-
-	
 
 	private int numero;
 
 	private String ruolo;
-
-	
 
 	private int stipendio;
 
 	public Dipendenti() {
 	}
 
-	public int getID_dip() {
-		return this.ID_dip;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setID_dip(int ID_dip) {
-		this.ID_dip = ID_dip;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
-
 	public String getCognome() {
 		return this.cognome;
 	}
@@ -52,9 +45,7 @@ public class Dipendenti implements Serializable {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-
 	
-
 	public String getNome() {
 		return this.nome;
 	}
@@ -62,8 +53,6 @@ public class Dipendenti implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	
 
 	public int getNumero() {
 		return this.numero;
@@ -73,8 +62,6 @@ public class Dipendenti implements Serializable {
 		this.numero = numero;
 	}
 
-	
-
 	public String getRuolo() {
 		return this.ruolo;
 	}
@@ -82,7 +69,6 @@ public class Dipendenti implements Serializable {
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
-
 
 
 	public int getStipendio() {

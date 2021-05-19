@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class Ordini implements Serializable {
 	private Date data;
 
 	//bi-directional many-to-one association to OrdProd
+	@JsonIgnore
 	@OneToMany(mappedBy="ordini")
 	private List<OrdProd> ordProds;
 

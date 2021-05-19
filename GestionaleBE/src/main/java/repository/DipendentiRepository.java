@@ -34,7 +34,7 @@ public class DipendentiRepository {
 	}
 	
 	public void delete(Dipendenti d)throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		Dipendenti dd = em.find(Dipendenti.class, d.getID_dip());
+		Dipendenti dd = em.find(Dipendenti.class, d.getId());
 		em.remove(dd);
 	}
 	

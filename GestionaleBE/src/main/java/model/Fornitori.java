@@ -1,15 +1,11 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 
 
 /**
@@ -32,8 +28,8 @@ public class Fornitori implements Serializable {
 	private String sede;
 
 	//bi-directional many-to-one association to Movimenti
-	@OneToMany(mappedBy="fornitori")
 	@JsonIgnore
+	@OneToMany(mappedBy="fornitori")
 	private List<Movimenti> movimentis;
 
 	public Fornitori() {
