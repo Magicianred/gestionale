@@ -47,8 +47,12 @@ public class MovdetailsRepository {
 		return em.find(Movdetail.class, Id);
 	}
 	
-	public Movdetail findByIdProd(int id_prod) {
-		return em.find(Movdetail.class, id_prod);
+	@SuppressWarnings("unchecked")
+	public List<Movdetail> findByIdProd(int id_prod) {
+		Query q = em.createQuery("SELECT m FROM Movdetail m WHERE id_prod = :id_prod");
+		q.setParameter("id_prod", id_prod);
+		List<Movdetail> res = q.getResultList();
+		return res;
 	}
 }
 

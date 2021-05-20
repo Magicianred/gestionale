@@ -42,7 +42,7 @@ public class MovdetailService {
 		return mr.findById(ID_mov);
 	}
 	
-	public Movdetail findByIdProd(int id_prod) {
+	public List<Movdetail> findByIdProd(int id_prod) {
 		return mr.findByIdProd(id_prod);
 	}
 	
