@@ -46,5 +46,8 @@ public class MovdetailService {
 		return mr.findByIdProd(id_prod);
 	}
 	
+	public List<Movdetail> findByNomeProd(String nome){
+		return mr.findByNomeProd(nome);
+	}
 	
 }

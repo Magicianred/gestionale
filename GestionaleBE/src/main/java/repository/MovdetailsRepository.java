@@ -54,6 +54,14 @@ public class MovdetailsRepository {
 		List<Movdetail> res = q.getResultList();
 		return res;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Movdetail> findByNomeProd(String nome){
+		Query q = em.createQuery("SELECT m FROM Movdetail m, Prodotti p WHERE m.prodotti = p.id AND p.nome LIKE :nome");
+		q.setParameter("nome", "%"+nome+"%");
+		List<Movdetail> res = q.getResultList();
+		return res;
+	}
 }
 
 
