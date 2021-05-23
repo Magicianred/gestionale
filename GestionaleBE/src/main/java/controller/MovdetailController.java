@@ -72,5 +72,12 @@ public class MovdetailController {
 	public List<Movdetail> findByNomeProd(@RequestParam (value = "nome", required = true) String nome) {
 		return ms.findByNomeProd(nome);
 	}
+	
+	
+	@GetMapping("/findByNomeForn")
+	@Produces("application/json")
+	public List<Movdetail> findByNomeForn(@RequestParam (value = "nome", required = true) String nome) {
+		return ms.findByNomeForn(nome);
+	}
 
 }

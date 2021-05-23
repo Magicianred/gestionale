@@ -50,4 +50,8 @@ public class MovdetailService {
 		return mr.findByNomeProd(nome);
 	}
 	
+	public List<Movdetail> findByNomeForn(String nome){
+		return mr.findByNomeForn(nome);
+	}
+	
 }
