@@ -1,7 +1,9 @@
 package service;
 
+
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -52,6 +54,10 @@ public class MovdetailService {
 	
 	public List<Movdetail> findByNomeForn(String nome){
 		return mr.findByNomeForn(nome);
+	}
+	
+	public List<Movdetail> findByDate (Date data){
+		return mr.findByDate(data);
 	}
 	
 }

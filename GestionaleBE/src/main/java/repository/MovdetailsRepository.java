@@ -1,7 +1,9 @@
 package repository;
 
+
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -70,6 +72,16 @@ public class MovdetailsRepository {
 		List<Movdetail> res = q.getResultList();
 		return res;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Movdetail> findByDate (Date data){
+		Query q = em.createQuery("SELECT m FROM Movdetail m, Movimenti mm WHERE m.movimenti = mm.id AND mm.data = :data ");
+		q.setParameter("data", data);
+		List<Movdetail> res = q.getResultList();
+		return res;
+	}
+	
+	
 }
 
 

@@ -1,7 +1,10 @@
 package controller;
 
+
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -9,6 +12,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,5 +83,13 @@ public class MovdetailController {
 	public List<Movdetail> findByNomeForn(@RequestParam (value = "nome", required = true) String nome) {
 		return ms.findByNomeForn(nome);
 	}
+	
+	@GetMapping("/findByDate")
+	@Produces("application/json")
+	public List<Movdetail> findByDate(@RequestParam (value= "data", required  = true) @DateTimeFormat(pattern="yyyy-MM-dd") Date data){
+//		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(data);  
+		return ms.findByDate(data);
+	}
+	
 
 }
