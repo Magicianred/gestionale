@@ -87,9 +87,16 @@ public class MovdetailController {
 	@GetMapping("/findByDate")
 	@Produces("application/json")
 	public List<Movdetail> findByDate(@RequestParam (value= "data", required  = true) @DateTimeFormat(pattern="yyyy-MM-dd") Date data){
-//		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(data);  
 		return ms.findByDate(data);
 	}
+	
+	@GetMapping("/findByDateRange")
+	@Produces("application/json")
+	public List<Movdetail> findByDataRange(@RequestParam(value= "data1", required  = true) @DateTimeFormat(pattern="yyyy-MM-dd") Date data1,@RequestParam(value= "data2", required  = true) @DateTimeFormat(pattern="yyyy-MM-dd") Date data2){
+		return ms.findByDataRange(data1, data2);
+	}
+	
+	
 	
 
 }

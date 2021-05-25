@@ -60,4 +60,8 @@ public class MovdetailService {
 		return mr.findByDate(data);
 	}
 	
+	public List<Movdetail> findByDataRange (Date data1, Date data2){
+		return mr.findByDataRange(data1, data2);
+	}
+	
 }

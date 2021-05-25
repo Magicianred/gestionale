@@ -81,6 +81,17 @@ public class MovdetailsRepository {
 		return res;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Movdetail> findByDataRange (Date data1, Date data2){
+		Query q = em.createQuery("SELECT m FROM Movdetail m, Movimenti mm WHERE m.movimenti = mm.id AND mm.data BETWEEN :data1 AND :data2");
+		q.setParameter("data1", data1);
+		q.setParameter("data2", data2);
+		List<Movdetail> res = q.getResultList();
+		return res;
+	}
+	
+	
+	
 	
 }
 
