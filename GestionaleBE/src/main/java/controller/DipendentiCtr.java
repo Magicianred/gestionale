@@ -60,5 +60,24 @@ public class DipendentiCtr {
 		return ds.findById(ID_dip);
 	}
 	
+	@GetMapping("/findByNome")
+	@Produces("application/json")
+	public List<Dipendenti> findByNome(@RequestParam(value = "nome", required = true) String nome){
+		return ds.findByNome(nome);
+	}
+	
+	@GetMapping("/findByCognome")
+	@Produces("application/json")
+	public List<Dipendenti> findByCognome(@RequestParam(value = "cognome", required = true) String cognome){
+		return ds.findByCognome(cognome);
+	}
+	
+	@GetMapping("/findByRuolo")
+	@Produces("application/json")
+	public List<Dipendenti> findByRuolo(@RequestParam(value = "ruolo", required = true) String ruolo){
+		return ds.findByRuolo(ruolo);
+	}
+	
+	
 	 	
 }

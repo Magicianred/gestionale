@@ -42,6 +42,18 @@ public class DipendentiService {
 		return dr.findByid(ID_dip);
 	}
 	
+	public List<Dipendenti> findByNome(String nome){
+		return dr.findByNome(nome);
+	}
+	
+	public List<Dipendenti> findByCognome(String cognome){
+		return dr.findByCognome(cognome);
+	}
+	
+	public List<Dipendenti> findByRuolo(String ruolo){
+		return dr.findByRuolo(ruolo);
+	}
+	
 	
 	
 	

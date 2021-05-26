@@ -49,5 +49,29 @@ public class DipendentiRepository {
 	public Dipendenti findByid(int ID_dip) {
 		return em.find(Dipendenti.class, ID_dip);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Dipendenti> findByNome(String nome) {
+		Query q = em.createQuery("SELECT d FROM Dipendenti d WHERE d.nome = :nome");
+		q.setParameter("nome", nome);
+		List<Dipendenti> res = q.getResultList();
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Dipendenti> findByCognome(String cognome) {
+		Query q = em.createQuery("SELECT d FROM Dipendenti d WHERE d.cognome = :cognome");
+		q.setParameter("cognome", cognome);
+		List<Dipendenti> res = q.getResultList();
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Dipendenti> findByRuolo(String ruolo) {
+		Query q = em.createQuery("SELECT d FROM Dipendenti d WHERE d.ruolo = :ruolo");
+		q.setParameter("ruolo", ruolo);
+		List<Dipendenti> res = q.getResultList();
+		return res;
+	}
 
 }
