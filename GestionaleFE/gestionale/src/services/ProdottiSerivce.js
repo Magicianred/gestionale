@@ -1,23 +1,25 @@
-const API_PRODOTTI = 'http://localhost:8080/gestionale-0.0.1-SNAPSHOT/prodotti';
+import React, { useState, useEffect } from "react";
+import Prodotti from '../../src/Components/ProdottiComponent'
 
-function parse(res) {
-    return res.json();
+
+function ProdottiFetch (){
+  const [prodotti,setProdotti] = useState([])
+
+  const api='http://localhost:8080/gestionale-0.0.1-SNAPSHOT/'
+
+  useEffect(() => {
+    const getDati = async() =>{
+      const res = await fetch(api + "prodotti/findAll")
+      const data = await res.json()
+      .then (data => setProdotti(data))
+      .catch(error => alert(error='error loading the API'))
+    }
+    getDati();
+  },[])
+
+   return (
+    <Prodotti prodotti={prodotti}/>
+ )
   }
 
-
-class ProdottiService{
-
-    
-
-    getProdotti(){
-        return fetch(`${API_PRODOTTI}/findAll`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        })
-        .then(parse);
-    }
-}
-
-export default ProdottiService;
+export default ProdottiFetch

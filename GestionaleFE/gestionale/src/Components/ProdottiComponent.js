@@ -16,7 +16,7 @@ const Prodotti = ({ prodotti }) => {
                     </tr>
                 </thead>
                 {prodotti.map((prodotto) => (
-                <tbody>
+                <tbody key={prodotto.id}>
                     <tr>
                         <th scope="row">{prodotto.id}</th>
                         <td>{prodotto.nome}</td>
