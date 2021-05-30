@@ -32,8 +32,9 @@ public class ProdottiService {
 		return pr.update(p);
 	}
 	
-	public void remove(Prodotti p) throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		pr.delete(p);
+	@Transactional
+	public void remove(int id) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+		pr.delete(id);
 	}
 	
 	public List<Prodotti> findAll(){

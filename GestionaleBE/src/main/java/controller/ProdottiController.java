@@ -45,8 +45,8 @@ public class ProdottiController {
 	
 	@DeleteMapping("/delete")
 	@Produces("application/json")
-	public void remove(@RequestBody Prodotti p) throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		ps.remove(p);
+	public void remove(@RequestParam (value = "id", required  =true ) int id) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+		ps.remove(id);
 	}
 	
 	@GetMapping("/findAll")

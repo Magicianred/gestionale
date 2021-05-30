@@ -32,9 +32,8 @@ public class ProdottiRepository {
 		}return true;
 	}
 	
-	public void delete(Prodotti p)throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		Prodotti pp = em.find(Prodotti.class, p.getId());
-		em.remove(pp);
+	public void delete(int id)throws ClassNotFoundException, SQLException, NamingException, ParseException {
+		em.remove(em.find(Prodotti.class, id));
 	}
 	
 	@SuppressWarnings("unchecked")
