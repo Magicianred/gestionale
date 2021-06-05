@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <>
      
-      <DataContextProvider/>
+      {/* <DataContextProvider/> */}
       {/* <Header/> */}
       <ProdottiFetch/>
       {/* <ProdottiComponent2/> */}

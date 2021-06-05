@@ -65,7 +65,7 @@ const Prodotti = ({ prodotti }) => {
                         <th scope="col">Giacenza</th>
                     </tr>
                 </thead>
-                {prodotti.map((prodotto) => (
+                {prodotti && prodotti.length > 0 && prodotti.map((prodotto) => (
                 <tbody key={prodotto.id}>
                     <tr>
                         <th scope="row">{prodotto.id}</th>

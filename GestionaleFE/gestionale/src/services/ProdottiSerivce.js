@@ -5,9 +5,7 @@ import config from '../config';
 
 
 
-function ProdottiFetch (){
-  const [prodotti,setProdotti] = useState([])
-  const Prodotti = ({ prodotti, setProdotti }) => {
+  const ProdottiFetch = ({ prodotti, setProdotti }) => {
     const [name, setName] = useState("")
   
 
@@ -107,6 +105,5 @@ function ProdottiFetch (){
 
     return(<Prodotti prodotti={prodotti} setProdotti={setProdotti} />) 
   }
-}
 
 export default ProdottiFetch
