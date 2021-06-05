@@ -1,5 +1,6 @@
 package repository;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -32,8 +33,20 @@ public class ProdottiRepository {
 		}return true;
 	}
 	
-	public void delete(int id)throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		em.remove(em.find(Prodotti.class, id));
+	public int delete(int id)throws ClassNotFoundException, SQLException, NamingException, ParseException {
+		Query q = em.createQuery("SELECT COUNT(*) FROM Prodotti p, Movdetail m WHERE p.id = m.prodotti AND p.id = :id");
+		q.setParameter("id", id);
+		long a = (Long) q.getSingleResult();
+		if(a == 0) {
+			em.remove(em.find(Prodotti.class, id));
+			System.out.println("eliminato");
+			return 0;
+		}else { 
+			System.out.println("errore foreign key");
+			return 1;
+			}
+		
+		
 	}
 	
 	@SuppressWarnings("unchecked")

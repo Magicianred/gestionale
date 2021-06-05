@@ -33,8 +33,8 @@ public class ProdottiService {
 	}
 	
 	@Transactional
-	public void remove(int id) throws ClassNotFoundException, SQLException, NamingException, ParseException {
-		pr.delete(id);
+	public int remove(int id) throws ClassNotFoundException, SQLException, NamingException, ParseException {
+		return pr.delete(id);
 	}
 	
 	public List<Prodotti> findAll(){

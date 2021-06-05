@@ -7,6 +7,9 @@ import config from '../config';
 
 function ProdottiFetch (){
   const [prodotti,setProdotti] = useState([])
+  const Prodotti = ({ prodotti, setProdotti }) => {
+    const [name, setName] = useState("")
+  
 
   useEffect(() => {
     const getDatiAll = async() =>{
@@ -15,32 +18,47 @@ function ProdottiFetch (){
       .then (data => setProdotti(data))
       .catch(error => alert(error='error loading the API'))
     }
-    //getDatiAll();
-    //GetProdottiByNome("giacca").then(setProdotti)
-    //GetProdottiById(1).then(setProdotti)
-    //GetProdottiOrderByCres().then(setProdotti)
-    GetProdottiOrderByDecre().then(setProdotti)
+    getDatiAll();
+    // GetProdottiByNome("giacca")
+    // GetProdottiById(1)
+    // GetProdottiOrderByCres()
+    // GetProdottiOrderByDecre()
+    // DeleteProdotto(5)
+    
   },[]) 
 
-  async function GetProdottiById(id){
-    const res = await fetch(`${config.api}prodotti/findByID?id=${id}`,{
+  async function GetProdottiAll(){
+    const res = await fetch(`${config.api}prodotti/findAll`,{
       method: 'GET'
     })
-    const data = await res.json();
+    const data = await res.json()
+    setProdotti(data)
     if (res.status >= 400) {
       console.warn("ERROR api");
       throw new Error(data.message);
     }
     return data;
-    
-    
+  }
+
+  async function GetProdottiById(id){
+    const res = await fetch(`${config.api}prodotti/findByID?id=${id}`,{
+      method: 'GET'
+    })
+    const data = await res.json().then(setProdotti)
+    console.log(data)
+    if (res.status >= 400) {
+      console.warn("ERROR api");
+      throw new Error(data.message);
+    }
+    return data;
+ 
   };
 
   async function GetProdottiByNome(nome){
     const res = await fetch(`${config.api}prodotti/findByNome?nome=${nome}`,{
       method: 'GET'
     })
-    const data = await res.json();
+    const data = await res.json()
     if (res.status >= 400) {
       console.warn("ERROR api");
       throw new Error(data.message);
@@ -53,7 +71,7 @@ function ProdottiFetch (){
     const res = await fetch(`${config.api}prodotti/FindGiacCres`,{
       method: 'GET'
     })
-    const data = await res.json();
+    const data = await res.json()
     if (res.status >= 400) {
       console.warn("ERROR api");
       throw new Error(data.message);
@@ -66,7 +84,7 @@ function ProdottiFetch (){
     const res = await fetch(`${config.api}prodotti/FindGiacDecre`,{
       method: 'GET'
     })
-    const data = await res.json();
+    const data = await res.json()
     if (res.status >= 400) {
       console.warn("ERROR api");
       throw new Error(data.message);
@@ -76,12 +94,19 @@ function ProdottiFetch (){
   };
 
 
+  function DeleteProdotto(id){
+    const a = fetch(`${config.api}prodotti/delete?id=${id}`,{method: 'DELETE'}).then(() => {
+        {console.log(a);}
+        if(a == 0){console.log('removed');}
+      else{alert("Non puoi eliminare un prodotto se ci sono movimenti")}
+    })};
+  
 
-   return (
-     prodotti ? <Prodotti prodotti={prodotti}/>  : <></>
-    
- )
+  
+
+
+    return(<Prodotti prodotti={prodotti} setProdotti={setProdotti} />) 
   }
-
+}
 
 export default ProdottiFetch
